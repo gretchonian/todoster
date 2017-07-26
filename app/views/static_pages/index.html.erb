@@ -1,10 +1,36 @@
 <section class="todoapp">
   <header class="header">
-    <h1>todos changing this for a test</h1>
+    <h1>todos</h1>
   </header>  
 
   <section class="main">
-    
+    <ul class="todo-list">
+      
+
+
+    </ul>
   </section>
 </section>
+
+<script>
+  $(function() {
+    // console.log("Hello, Javascript");
+    $.get("/tasks").success( function( data ) {
+      // console.log(data);
+      var htmlString = "";
+
+      $.each(data, function(index, task) {
+        // console.log(task.title);
+        var liElement = '<li><div class="view"><input class = "toggle" type="checkbox"><label>' + task.title + '</label></div></li>';
+
+        // console.log(liElement);
+        htmlString += liElement;
+      });
+      // console.log(htmlString);
+      var ulTodos = $('.todo-list');
+      ulTodos.html(htmlString);
+
+    });
+  });
+</script>
 
